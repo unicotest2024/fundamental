@@ -44,7 +44,7 @@ select studentID,name,age from students;
 
 >alter table studentAge rename to student_age;
 
-> alter table student_age rename column age to Age_O;
+>alter table student_age rename column age to Age_O;
 
 >alter table student_age add column is_adult INT;
 
@@ -143,13 +143,70 @@ insert into student_age (name,Age_O,studentID) select name,age,studentID from st
 ## Insert Specific Rows Based on Condition
 insert into student_age (name,Age_O,studentID) select name,age,studentID from students where age>24;
 
+## Update Single Column Using UPDATE Statement
+
+update students set name = 'osho' where age > 24;
+
+## Update multiple Column Using UPDATE Statement
+
+update students set name = 'vivek',mark = 95 where age > 24;
+
+Optimizing SQL UPDATE Queries
+Avoid frequent updates: Constantly updating rows can slow down performance. Batch updates or consider using a database trigger to handle automatic updates.
+Index relevant columns: Ensure that columns in the WHERE clause (such as CustomerID) are indexed. This will improve the speed of the update operation.
+
+## SQL DELETE Statement
+
+The SQL DELETE statement is used to remove specific rows from a table while keeping the table structure intact. It is different from DROP, which deletes the entire table.
+
+Removes rows based on conditions.
+Retains table schema, constraints, and indexes.
+Can delete a single row or all rows.
+Useful for cleaning or managing datasets.
+
+delete from students where studentID = 2;
+
+delete from students where age > 22 and name = 'vivek';
+
+delete from student;
+
+## Where Clause with BETWEEN Operator
+
+select * from students where age between 24 and 26;
 
 
+## Where Clause with LIKE Operator
+
+select * from students where name like 'S%';
+
+select * from students where name like '%a%';
+
+select * from students where name like '%a';
+
+## Where Clause with IN Operator
+
+select * from students where age in (24,25);
+
+select * from students where age <> 25;
 
 
+## SQL HAVING Clause
+
+HAVING clause filters results after applying aggregate functions. Unlike WHERE, which filters individual rows, HAVING works with aggregated results.
+
+Its main features include:
+
+Filters results based on aggregate functions.
+Supports Boolean conditions (AND, OR).
+Applied after aggregate functions in the query.
+Useful for summary-level or aggregated filtering.
 
 
+select sum(age) as total_age from students having sum(age) > 100;
+
+select sum(age) as total_age from students having sum(age) > 289;
+
+select avg(age) as avg_age from students having avg(age) > 25;
 
 
-
-
+select sum(avg) as tot_age, avg()

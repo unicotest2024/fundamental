@@ -58,6 +58,97 @@ TRUNCATE TABLE is faster and uses fewer system and transaction logs compared to 
 However, TRUNCATE TABLE typically cannot be rolled back if executed within a transaction.
 
 
+## select specific column
+
+select name from student;
+
+## select all column
+
+select * from students;
+
+## select statment with where clause
+
+select * from students where mark > 80;
+
+## select using group by clause
+
+select count(*) as age_count,age from students group by age; 
+
+select count(*) as age_count,age,name from students group by age,name;
+
+select count(*) as age_count,age from students where age >= 25 group by age;
+
+select count(*) as age_count,age from students group by age having age >24;
+
+
+
+
+GROUP BY statement groups rows that have the same values in one or more columns. It is commonly used to create summaries, such as total sales by region or number of users by age group.
+
+Its main features include:
+
+Used with the SELECT statement.
+Groups rows after filtering with WHERE.
+Can be combined with aggregate functions like SUM(), COUNT(), AVG(), etc.
+Filter grouped results using the HAVING clause.
+Comes after WHERE but before HAVING and ORDER BY.
+
+| Feature                         | WHERE              | HAVING                     |
+| ------------------------------- | ------------------ | -------------------------- |
+| **Filters**                     | Individual rows    | Groups (after aggregation) |
+| **Used with GROUP BY**          | Before grouping    | After grouping             |
+| **Can use aggregate functions** | No                 | Yes                        |
+| **Execution order**             | Before aggregation | After aggregation          |
+
+
+1. WHERE Clause
+
+Used to filter rows before grouping or aggregation happens.
+
+It works on individual rows of a table.
+
+You cannot use aggregate functions (like SUM(), COUNT(), AVG()) inside a WHERE clause.
+
+2. HAVING Clause
+
+Used to filter groups after the GROUP BY operation.
+
+It works on aggregate results (like totals, averages, counts).
+
+You can use aggregate functions inside HAVING.
+
+
+# select with distinct clause
+
+select DISTINCT  age  from students;
+
+select DISTINCT  mark  from students;
+
+we will use DISTINCT keyword to return only unique values from a column.
+
+# select statment with order by clause
+
+select * from students order by age asc;
+
+select * from student order by age,mark asc;
+
+## Sorting By Column Number
+select * from student order by 3;
+
+
+## insert data from on table to another table
+
+insert into student_age (name,Age_O,studentID) select name,age,studentID from students;
+
+## Insert Specific Rows Based on Condition
+insert into student_age (name,Age_O,studentID) select name,age,studentID from students where age>24;
+
+
+
+
+
+
+
 
 
 
